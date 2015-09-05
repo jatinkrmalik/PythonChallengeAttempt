@@ -14,6 +14,7 @@ while flag:
     for el in msgLst:
         if el.isdigit():
             it+=1
+            #When you run this you will get that we need comments of the files not the content ;)
             #print it,el
             print czip.getinfo(fname).comment,
             fname= str(el)+".txt"
