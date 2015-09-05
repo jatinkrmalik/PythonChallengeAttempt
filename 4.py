@@ -1,5 +1,5 @@
 __author__ = 'Jatin'
-import urllib2;
+import urllib2
 
 churl = "http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="
 init_arg = "12345"
