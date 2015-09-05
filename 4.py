@@ -2,7 +2,7 @@ __author__ = 'Jatin'
 import urllib2;
 
 churl = "http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="
-init_arg = "9401"
+init_arg = "12345"
 flag = True 
 response = ""
 while flag:
@@ -18,6 +18,9 @@ while flag:
             
     if intCount==0:
         print html
-        raw_input("Is it the end?")
-        init_arg=str(int(init_arg)/2)
+        ch=raw_input("Is it the end?")
+        if ch=="no" or "n":
+            init_arg=str(int(init_arg)/2)
+        else:
+            print("Go to"+str(html))
 

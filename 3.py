@@ -24,7 +24,7 @@ for line in lines:
 print(lst)
 
 for el in lst:
-    print(el[4], end="")
+    print el[4]
 
 
 
