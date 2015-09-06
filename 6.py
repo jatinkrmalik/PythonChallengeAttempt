@@ -23,5 +23,3 @@ while flag:
     if cnt==0:
         #print msg
         flag=False
-
-

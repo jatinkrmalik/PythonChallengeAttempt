@@ -27,5 +27,3 @@ for lst in mysteryText:
     for el in lst:
        total+=el[0]*int(el[1])
 print total
-
-
