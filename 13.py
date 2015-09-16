@@ -14,3 +14,9 @@ pbook = "http://www.pythonchallenge.com/pc/phonebook.php"
 # We will now use XML-RPC
 phonebook = xmlrpclib.ServerProxy('http://www.pythonchallenge.com/pc/phonebook.php')
 print(phonebook.system.listMethods())
+print phonebook.system.methodHelp('phone')
+print phonebook.system.methodSignature('phone')
+
+print phonebook.phone("Bert")
+
+# Use this as the key for next level
