@@ -23,4 +23,5 @@ pxlst = list(chImg.getdata())
 newImg = Image.new("RGB", (100,100), "white")
 
 newImg.putdata(pxlst)
+newImg.putpixel((99,99), 0)
 newImg.show()
