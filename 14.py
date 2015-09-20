@@ -18,10 +18,16 @@ else:
 
 chImg = Image.open("wire.png")
 
-pxlst = list(chImg.getdata())
+spiralImg = Image.new(chImg.mode, (100,100), 0)
+dirs = [(1,0),(0,1),(-1,0),(0,-1)]
+x,y,z = -1,0,0
+for i in range(200):
+    d = dirs[i % 4]
+    for j in range(100 - (i + 1) // 2):
+        x += d[0]
+        y += d[1]
+        spiralImg.putpixel((x,y), chImg.getpixel((z,0)))
+        z += 1
 
-newImg = Image.new("RGB", (100,100), "white")
-
-newImg.putdata(pxlst)
-newImg.putpixel((99,99), 0)
-newImg.show()
+# WTF! It's a CAT :D
+spiralImg.show()
