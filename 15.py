@@ -1,5 +1,5 @@
 __author__ = 'jmalik'
-import requests, BeautifulSoup, datetime
+import requests, BeautifulSoup, datetime, ospath as fcheck
 
 churl = "http://www.pythonchallenge.com/pc/return/"
 param = "cat.html"
