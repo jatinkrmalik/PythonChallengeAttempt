@@ -21,15 +21,19 @@ else:
     chImg.close()
 
 chImg = Image.open("mozart.gif")
-print chImg.size
+w,h = chImg.size
+print w,h
 # x = Image(a)
 
 lst = list(chImg.getdata())
+
+for _ in range(640):
+    print chImg.getpixel((1,0))
 
 pxlval = open("pxl.txt", "wb")
 pxlval.write(str(lst))
 
 arr = 640*480
-
-chImgNew = Image.new("RGB", (int(arr),1), "Black")
-chImgNew.show()
+#
+# chImgNew = Image.new("RGB", (int(arr),1), "Black")
+# chImgNew.show()
