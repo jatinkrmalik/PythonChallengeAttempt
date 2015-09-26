@@ -34,3 +34,11 @@ for j in range(h):
 
 print bars
 #One magenta bar per line.
+
+
+shift = Image.new(chImg.mode, (w * 2, h), 0)
+shift.palette = chImg.palette  # share colour table
+for j in range(h):
+    for i in range(w):
+        shift.putpixel(((i + w - bars[j][0]) % w,j), chImg.getpixel((i,j)))
+shift.show()
