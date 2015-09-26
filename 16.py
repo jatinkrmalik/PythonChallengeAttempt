@@ -25,15 +25,12 @@ w,h = chImg.size
 print w,h
 # x = Image(a)
 
-lst = list(chImg.getdata())
+bars = []
+magenta = 195   # deduced by looking at the GIF's colour palette in GraphicConverter
+for j in range(h):
+    for i in range(w - 5):
+        if chImg.getpixel((i,j)) == magenta and chImg.getpixel((i+4,j)) == magenta:
+            bars.append((i,j))
 
-for _ in range(640):
-    print chImg.getpixel((1,0))
-
-pxlval = open("pxl.txt", "wb")
-pxlval.write(str(lst))
-
-arr = 640*480
-#
-# chImgNew = Image.new("RGB", (int(arr),1), "Black")
-# chImgNew.show()
+print bars
+#One magenta bar per line.
