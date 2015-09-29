@@ -17,8 +17,7 @@ churl = "http://www.pythonchallenge.com/pc/return/romance.html"
 # Cookie says you should have follow busynothing! Taking learnings from Level 4.
 
 churl = "http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing="
-# init_arg = "12345"
-init_arg = "86142"
+init_arg = "65071"
 
 flag = True
 response = ""
