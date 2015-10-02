@@ -1,6 +1,6 @@
 __author__ = 'Jatin'
 
-import requests, urllib2, cookielib,urllib
+import requests, urllib2, cookielib, urllib
 
 churl = "http://www.pythonchallenge.com/pc/return/romance.html"
 
@@ -25,7 +25,7 @@ print list(jar)
 print "\nAhan! there is a hidden message in the cookie. Look in value above^"
 print "\nLet us loop in the busynothing and store the value in a string"
 flag = True
-hdnmsg = "" # To store the hidden message
+hdnmsg = ""  # To store the hidden message
 response = opener.open(churl + init_arg).read()
 while flag:
     response = opener.open(churl + init_arg)
@@ -33,7 +33,7 @@ while flag:
     print html
     for cookie in jar:
         # We know it ends on %90 (hit n trial?)
-        if cookie.value=="%90":
+        if cookie.value == "%90":
             hdnmsg += cookie.value
             flag = False
         else:
@@ -47,8 +47,27 @@ while flag:
     init_arg = el
 
 print "*********************"
-print "Encoded bz2 string is: ",hdnmsg
+print "Encoded bz2 string is: ", hdnmsg
 import bz2
+
 print "*********************"
 print "Drum roll....\n"
 print bz2.decompress(urllib.unquote_plus("".join(hdnmsg)))
+
+# Oh wait! It's not over yet. The output says "is it the 26th already? call his father and inform him that "the flowers are on their way". he'll understand."
+# This is a reference to level 15 where 27th Jan was bday of Wolfgang Amadeus Mozart and message says to *call* his father.
+# Call is a reference to level 13. I think we should attempt a call to Leopold Mozart (father of Wolfgang Amadeus Mozart). Man this is inceptional
+
+# Taking cues from 13.py
+import xmlrpclib
+churl = "http://www.pythonchallenge.com/pc/return/disproportional.html"
+pbook = "http://www.pythonchallenge.com/pc/phonebook.php"
+phonebook = xmlrpclib.ServerProxy('http://www.pythonchallenge.com/pc/phonebook.php')
+print(phonebook.system.listMethods())
+print phonebook.system.methodHelp('phone')
+print phonebook.system.methodSignature('phone')
+
+print phonebook.phone("Leopold")
+# returns 555-VIOLIN
+
+# Hitting http://www.pythonchallenge.com/pc/return/violin.html return "no! i mean yes! but ../stuff/violin.php."
