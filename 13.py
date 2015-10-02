@@ -17,8 +17,6 @@ print(phonebook.system.listMethods())
 print phonebook.system.methodHelp('phone')
 print phonebook.system.methodSignature('phone')
 
-print phonebook.phone("Leopold")
-
-print phonebook.system.getCapabilities()
+print phonebook.phone("Bert")
 
 # Use this as the key for next level
