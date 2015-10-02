@@ -51,6 +51,6 @@ for _oy in range(0, oy):
         r1, g1, b1 = img1.getpixel((_ox, _oy))
         r2, g2, b2 = img2.getpixel((_ox, _oy))
         # print r2 - r1, g2 - g1, b2 - b1
-        diffImg.putpixel((_ox, _oy), (r2 - r1, g2 - g1, b2 - b1))
-
+        # diffImg.putpixel((_ox, _oy), (r2 - r1, g2 - g1, b2 - b1))
+        diffImg.putpixel((_ox, _oy), (r1 - r2, g1 - g2, b1 - b2))
 diffImg.show()
