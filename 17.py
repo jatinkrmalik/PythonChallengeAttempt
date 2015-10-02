@@ -53,7 +53,7 @@ import bz2
 print "*********************"
 print "Drum roll....\n"
 print bz2.decompress(urllib.unquote_plus("".join(hdnmsg)))
-
+print "*********************"
 # Oh wait! It's not over yet. The output says "is it the 26th already? call his father and inform him that "the flowers are on their way". he'll understand."
 # This is a reference to level 15 where 27th Jan was bday of Wolfgang Amadeus Mozart and message says to *call* his father.
 # Call is a reference to level 13. I think we should attempt a call to Leopold Mozart (father of Wolfgang Amadeus Mozart). Man this is inceptional
@@ -63,11 +63,29 @@ import xmlrpclib
 churl = "http://www.pythonchallenge.com/pc/return/disproportional.html"
 pbook = "http://www.pythonchallenge.com/pc/phonebook.php"
 phonebook = xmlrpclib.ServerProxy('http://www.pythonchallenge.com/pc/phonebook.php')
+print
 print(phonebook.system.listMethods())
+print
 print phonebook.system.methodHelp('phone')
+print
 print phonebook.system.methodSignature('phone')
-
+print
 print phonebook.phone("Leopold")
 # returns 555-VIOLIN
 
 # Hitting http://www.pythonchallenge.com/pc/return/violin.html return "no! i mean yes! but ../stuff/violin.php."
+
+# http://www.pythonchallenge.com/pc/return/violin.php doesnt work :(
+# http://www.pythonchallenge.com/pc/violin.php doesn't work! :(
+# *Trying infinite possibilities*
+# EUREKA! http://www.pythonchallenge.com/pc/stuff/violin.php <- This worked :D
+
+print "*****************************\nHoly shit! It's Leopold himself. We wants to know \"what do we want?\""
+print "I want to tell him that the flowers are on their way! But how?"
+print "Maybe he likes a cookie ;)\n*****************************"
+
+# Adding message to the jar.
+list(jar)[0].value = 'the+flowers+are+on+their+way'
+print opener.open("http://www.pythonchallenge.com/pc/stuff/violin.php").read()
+
+print "\n\nBALLOONS!"
