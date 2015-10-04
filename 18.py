@@ -1,6 +1,6 @@
 __author__ = 'Jatin'
 
-import requests, urllib2, BeautifulSoup, os.path as fcheck, gzip
+import requests, urllib2, BeautifulSoup, os.path as fcheck, gzip, binascii
 from PIL import Image
 #
 # churl = "http://www.pythonchallenge.com/pc/return/balloons.html"
@@ -63,13 +63,48 @@ print response.content
 
 # Maybe consider deltas.gz! Hmmm
 
-response = requests.get("http://www.pythonchallenge.com/pc/return/deltas.gz", auth=("huge","file"))
-f = open("deltas.gz", "w")
-f.write(response.content)
-f.close()
+# response = requests.get("http://www.pythonchallenge.com/pc/return/deltas.gz", auth=("huge","file"))
+# f = open("deltas.gz", "w")
+# f.write(response.content)
+# f.close()
+
+# No matter what I do, If I save deltas.gz using code above, it corrupts the file, anyway manually downloaded the file and extracting now.
+# Will include this delta file in git
+
 
 with gzip.open('deltas.gz', 'rb') as f:
-    file_content = f.read()
+    file_content = f.readlines()
 
-for a in file_content:
-    print a
+l18 = open("level18", "w")
+l18.writelines(file_content)
+l18.close()
+
+#Now we have 2 images hexcode in the level18 file. Let's break it into 2 files
+
+l18 = open("level18", "r")
+l18_1 = open("level18_1","r+")
+l18_2 = open("level18_2","r+")
+
+fcon = l18.read()
+fconlst = fcon.split("\n")
+
+# Bad approach, lets look for alternatives
+# for i in range(len(fconlst)):
+#     nwlst = fconlst[i].split("   ")
+#     l18_1.write(nwlst[0])
+#     l18_2.write(nwlst[1])
+
+# A bit cheating as first file is till 53, and second starts from 56
+pairs = [(line[:53], line[56:]) for line in fconlst]
+columns = ['\n'.join([p[i] for p in pairs]) for i in range(2)]
+
+l18_1.write(columns[0])
+l18_2.write(columns[1])
+l18.close()
+# l18_1.close()
+# l18_2.close()
+
+getbytes = (binascii.unhexlify(l18_2.read()))
+f = open("filetest.png", "wb")
+f.write(getbytes)
+f.close
