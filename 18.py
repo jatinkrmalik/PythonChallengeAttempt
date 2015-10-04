@@ -58,7 +58,7 @@ from PIL import Image
 # Nope, this is all useless! As comment said it may be obvious. The difference here is basically of "brightness"
 
 churl = "http://www.pythonchallenge.com/pc/return/brightness.html"
-response = requests.get(churl, auth=("huge","file"))
+response = requests.get(churl, auth=("huge", "file"))
 print response.content
 
 # Maybe consider deltas.gz! Hmmm
@@ -79,11 +79,11 @@ l18 = open("level18", "w")
 l18.writelines(file_content)
 l18.close()
 
-#Now we have 2 images hexcode in the level18 file. Let's break it into 2 files
+# Now we have 2 images hexcode in the level18 file. Let's break it into 2 files
 
 l18 = open("level18", "r")
-l18_1 = open("level18_1","r+")
-l18_2 = open("level18_2","r+")
+l18_1 = open("level18_1", "r+")
+l18_2 = open("level18_2", "r+")
 
 fcon = l18.read()
 fconlst = fcon.split("\n")
@@ -104,7 +104,39 @@ l18.close()
 # l18_1.close()
 # l18_2.close()
 
-getbytes = (binascii.unhexlify(l18_2.read()))
-f = open("filetest.png", "wb")
-f.write(getbytes)
-f.close
+# OK I cheated here. Just couldn't find how to convert hex to image in Python. I was able to do that using HxD editor in Windows. :)
+import codecs, re
+
+
+def unhex(s): return codecs.getdecoder('hex')(re.sub('[^0-9a-fA-F]', '', s))[0]
+
+
+for i in range(2): open('de lta%d.png' % i, 'wb').write(unhex(columns[i]))
+# Images are garbled up here.
+
+
+
+f1_lines = columns[0].splitlines()
+f2_lines = columns[1].splitlines()
+
+import difflib
+
+d = difflib.Differ()
+diff = d.compare(f1_lines, f2_lines)
+diffstr = '\n'.join(diff)
+print diffstr
+img1 = open("level18_img1", "w")
+img2 = open("level18_img2", "w")
+img3 = open("level18_img3", "w")
+
+for line in diffstr.splitlines():
+    if line[0] == " ":
+        img1.write(line[2:] + "\n")
+
+    elif line[0] == "+":
+        img2.write(line[2:] + "\n")
+
+    elif line[0] == "-":
+        img3.write(line[2:] + "\n")
+
+for i in range(3): open('newdelta%d.png' % i, 'wb').write(unhex("img" + str(i)))
